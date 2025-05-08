@@ -74,19 +74,8 @@ RUN echo "" >> ${HOME}/.bashrc && \
     echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ${HOME}/.bashrc && \
     echo "source /usr/share/gazebo-11/setup.sh" >> ${HOME}/.bashrc && \
     echo "source ${HOME}/cartesian_control_ws/devel/setup.bash" >> ${HOME}/.bashrc && \
-    echo "export ROSCONSOLE_FORMAT='[${severity}] [${node}]: ${message}'" >> ${HOME}/.bashrc && \
+    echo "export ROSCONSOLE_FORMAT='[\${severity}] [\${node}]: \${message}'" >> ${HOME}/.bashrc && \
     echo "" >> ${HOME}/.bashrc && \
     echo "alias cm='catkin_make'" >> ${HOME}/.bashrc && \
     echo "alias sd='source devel/setup.bash'" >> ${HOME}/.bashrc && \
-    # aliases for switching between local launch and remote launch
-    # [NOTE] change the correct IP of your robot 
-    # echo "alias local='export ROS_HOSTNAME=localhost && export ROS_MASTER_URI=http://localhost:11311'" >> ${HOME}/.bashrc && \
-    # echo "alias robot='export ROS_MASTER_URI=http://192.168.50.77:11311'" >> ${HOME}/.bashrc && \
-    # [NOTE] comment the below line if you don't use my ROS workspace, or
-    #        change the path to where your Gazebo model locates
-    # echo "export GAZEBO_MODEL_PATH=${CATKIN_WS_PATH}/src/mars_lite_description/models:\$GAZEBO_MODEL_PATH" >> ${HOME}/.bashrc && \
     apt-get clean
-
-# # NVIDIA settings
-# ENV NVIDIA_VISIBLE_DEVICES=all
-# ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
