@@ -57,23 +57,10 @@ RUN apt-get update && \
 WORKDIR ${HOME}
 COPY . ${HOME}
 
-# Install cartesian controller as ROS workspace
-RUN mkdir -p ${HOME}/cartesian_control_ws/src
-WORKDIR ${HOME}/cartesian_control_ws/src
-RUN apt-get update && \
-    git clone --branch ros1 https://github.com/fzi-forschungszentrum-informatik/cartesian_controllers.git && \
-    rosdep update && \
-    rosdep install --from-paths ./ --ignore-src -y
-WORKDIR ${HOME}/cartesian_control_ws
-RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && \
-    catkin_make -DCMAKE_BUILD_TYPE=Release"
-
 # Set aliases and environment settings in .bashrc
-WORKDIR ${HOME}
 RUN echo "" >> ${HOME}/.bashrc && \
     echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ${HOME}/.bashrc && \
     echo "source /usr/share/gazebo-11/setup.sh" >> ${HOME}/.bashrc && \
-    echo "source ${HOME}/cartesian_control_ws/devel/setup.bash" >> ${HOME}/.bashrc && \
     echo "export ROSCONSOLE_FORMAT='[\${severity}] [\${node}]: \${message}'" >> ${HOME}/.bashrc && \
     echo "" >> ${HOME}/.bashrc && \
     echo "alias cm='catkin_make'" >> ${HOME}/.bashrc && \

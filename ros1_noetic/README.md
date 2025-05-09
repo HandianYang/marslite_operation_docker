@@ -44,8 +44,6 @@
   - `ros-${ROS_DISTRO}-move-base-msgs`
 * ROS-sharp
   - `ros-${ROS_DISTRO}-rosbridge-server`
-* Cartesian controller
-  - `cartesian_controller_ws`
 
 ## Other features
 
