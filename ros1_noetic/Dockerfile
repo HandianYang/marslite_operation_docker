@@ -1,6 +1,8 @@
-FROM ros:noetic-ros-base-focal
+FROM ubuntu:focal
 LABEL maintainer="HandianYang"
 
+ENV ROS_DISTRO=noetic
+ENV ROS_ROOT=/opt/ros/${ROS_DISTRO}
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Path settings
@@ -22,6 +24,19 @@ RUN apt-get update && \
       vim \
       wget && \
     rm -rf /var/lib/apt/lists/*
+
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && \
+    curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - && \
+    apt-get update && \
+    apt-get install -y \
+      ros-${ROS_DISTRO}-desktop-full \
+      build-essential \
+      python3-rosdep \
+      python3-rosinstall \
+      python3-rosinstall-generator \
+      python3-wstool && \
+    rosdep init && \
+    rosdep update
 
 # Install ROS packages
 RUN apt-get update && \

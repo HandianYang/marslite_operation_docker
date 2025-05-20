@@ -1,6 +1,6 @@
 # `marslite_operation:ros1-noetic`
 
-## Base image: `ros:noetic-ros-base-focal`
+## Base image: `ubuntu:focal`
 
 ## Crucial packages
 * ROS Noetic

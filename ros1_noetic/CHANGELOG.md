@@ -1,4 +1,9 @@
+Version 1.1.0 (May 20, 2025)
+----------------------------
 
++ Major bugfix: cannot build `mars_lite_remote_ws` ROS workspace 
++ Rebuilt image from `ubuntu:focal`
++ Installed ROS Noetic manually
 
 Version 1.0.0 (May 8, 2025)
 ----------------------------
